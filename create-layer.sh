@@ -7,10 +7,10 @@ cd $(dirname $0)
 
 TAG='lambda-layer'
 
-docker buildx build --platform linux/amd64 -t ${TAG} .
+docker buildx build --platform linux/arm64 -t ${TAG} .
 
 echo ">> Extracting layer.zip from the build container..."
-CONTAINER=$(docker run -d --platform linux/amd64 ${TAG} false)
+CONTAINER=$(docker run -d --platform linux/arm64 ${TAG} false)
 docker cp ${CONTAINER}:/kubectl_layer.zip layer.zip
 
 echo ">> Stopping container..."
